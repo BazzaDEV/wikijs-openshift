@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikijs-app
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: wikijs-app
+  template:
+    metadata:
+      labels: 
+        app: wikijs-app
+        deployment: wikijs-app
+    spec:
+      containers:
+        - name: wikijs-app
+          image: 'ghcr.io/bazzadev/wikijs-openshift:main'
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_TYPE
+              value: postgres
+            - name: DB_HOST
+              value: wikijs-db
+            - name: DB_PORT
+              value: '5432'
+            - name: DB_USER
+              value: wikijs
+            - name: DB_PASS
+              value: wikijsrocks
+            - name: DB_NAME
+              value: wiki

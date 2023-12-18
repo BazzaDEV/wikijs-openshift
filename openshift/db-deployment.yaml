@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikijs-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wikijs-db
+  template:
+    metadata:
+      labels:
+        app: wikijs-db
+        deployment: wikijs-db
+    spec:
+      volumes:
+        - name: pv
+          persistentVolumeClaim:
+            claimName: wikijs-db
+      containers:
+      - name: wikijs-db-psql
+        image: 'registry.redhat.io/rhel8/postgresql-15'
+        volumeMounts:
+          - name: pv
+            mountPath: /var/lib/pgsql/data
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        env:
+        - name: POSTGRESQL_USER
+          value: wikijs
+        - name: POSTGRESQL_PASSWORD
+          value: wikijsrocks
+        - name: POSTGRESQL_DATABASE
+          value: wiki
+

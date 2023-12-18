@@ -1,0 +1,18 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: wikijs-app
+  labels:
+    app: wikijs-app
+spec:
+  host: wikijs.apps.ag1.ejtj.p1.openshiftapps.com
+  to:
+    kind: Service
+    name: wikijs-app
+    weight: 100
+  port:
+    targetPort: 3000-tcp
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
