@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap 
+metadata:
+  name: wikijs-app
+  labels:
+    app.kubernetes.io/part-of: wikijs
+    component: app 
+data:
+  DB_TYPE: postgres
+  DB_HOST: wikijs-db
+  DB_PORT: '5432'
