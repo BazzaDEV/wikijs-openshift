@@ -5,7 +5,9 @@ metadata:
   labels:
     app: wikijs-app
 spec:
-  host: wikijs.apps.ag1.ejtj.p1.openshiftapps.com
+  #can make this custome
+  # host: wikijs.apps.ag1.ejtj.p1.openshiftapps.com
+  
   to:
     kind: Service
     name: wikijs-app
