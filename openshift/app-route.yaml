@@ -1,13 +1,14 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: wikijs-app
+  name: wikijs-app 
   labels:
     app: wikijs-app
+    app.kubernetes.io/part-of: wikijs
+    component: app 
 spec:
   #can make this custome
   # host: wikijs.apps.ag1.ejtj.p1.openshiftapps.com
-  
   to:
     kind: Service
     name: wikijs-app

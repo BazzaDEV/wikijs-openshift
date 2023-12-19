@@ -4,6 +4,8 @@ metadata:
   name: wikijs-app
   labels:
     app: wikijs-app
+    app.kubernetes.io/part-of: wikijs
+    component: app 
 spec:
   ports:
     - name: 3000-tcp
@@ -13,4 +15,3 @@ spec:
   selector:
     app: wikijs-app
     deployment: wikijs-app
-

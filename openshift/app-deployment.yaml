@@ -2,15 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wikijs-app
+  labels:
+    app: wikijs-app
+    app.kubernetes.io/part-of: wikijs
+    component: app 
 spec:
   replicas: 1
   selector: 
     matchLabels: 
       app: wikijs-app
+      deployment: wikijs-app
   template:
     metadata:
       labels: 
-        app: wikijs-app
+        app: wikijs-app 
         deployment: wikijs-app
     spec:
       containers:

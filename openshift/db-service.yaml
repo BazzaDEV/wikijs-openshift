@@ -2,6 +2,10 @@ kind: Service
 apiVersion: v1
 metadata:
   name: wikijs-db
+  labels:
+    app.kubernetes.io/part-of: wikijs
+    component: database
+    database: postgresql
 spec:
   selector:
     app: wikijs-db
