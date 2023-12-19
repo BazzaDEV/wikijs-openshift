@@ -5,10 +5,11 @@ metadata:
   labels:
     app.kubernetes.io/part-of: wikijs
     component: database
-    database: postgresqlspec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  volumeMode: Filesystem
+    database: postgresql
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+    volumeMode: Filesystem
