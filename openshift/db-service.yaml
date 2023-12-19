@@ -1,15 +1,15 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: db
+  name: wikijs-db
   labels:
     app.kubernetes.io/part-of: wikijs
     component: database
     database: postgresql
 spec:
   selector:
-    app: db
-    deployment: db
+    app: wikijs-db
+    deployment: wikijs-db
   ports:
     - name: 5432-tcp
       protocol: TCP

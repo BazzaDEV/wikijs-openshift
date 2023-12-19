@@ -1,15 +1,14 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: db
+  name: wikijs-db
   labels:
     app.kubernetes.io/part-of: wikijs
     component: database
     database: postgresql
-  spec:
-    accessModes:
-      - ReadWriteOnce
-    resources:
-      requests:
-        storage: 10Gi
-    volumeMode: Filesystem
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
