@@ -1,9 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: wikijs-app
+  name: wiki
   labels:
-    app: wikijs-app
+    app: wiki
+    app.kubernetes.io/part-of: wikijs
+    component: web
 spec:
   ports:
     - name: 3000-tcp
@@ -11,6 +13,5 @@ spec:
       port: 3000
       targetPort: 3000
   selector:
-    app: wikijs-app
-    deployment: wikijs-app
-
+    app: wiki
+    deployment: wiki

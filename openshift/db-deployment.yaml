@@ -1,24 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wikijs-db
+  name: db
+  app.kubernetes.io/part-of: wikijs
+  component: database
+  database: postgresql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wikijs-db
+      app: db
   template:
     metadata:
       labels:
-        app: wikijs-db
-        deployment: wikijs-db
+        app: db
+        deployment: db
     spec:
       volumes:
         - name: pv
           persistentVolumeClaim:
-            claimName: wikijs-db
+            claimName: db
       containers:
-      - name: wikijs-db-psql
+      - name: db
         image: 'registry.redhat.io/rhel8/postgresql-15'
         volumeMounts:
           - name: pv

@@ -1,20 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wikijs-app
+  name: wiki
+  labels:
+    app: wiki
+    app.kubernetes.io/part-of: wikijs
+    component: web
 spec:
   replicas: 1
   selector: 
     matchLabels: 
-      app: wikijs-app
+      app: wiki
+      deployment: wiki
   template:
     metadata:
       labels: 
-        app: wikijs-app
-        deployment: wikijs-app
+        app: wiki 
+        deployment: wiki
     spec:
       containers:
-        - name: wikijs-app
+        - name: wiki
           image: 'ghcr.io/bazzadev/wikijs-openshift:main'
           ports:
             - containerPort: 3000
