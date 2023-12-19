@@ -2,9 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db
-  app.kubernetes.io/part-of: wikijs
-  component: database
-  database: postgresql
+  labels:
+    app.kubernetes.io/part-of: wikijs
+    component: database
+    database: postgresql
 spec:
   replicas: 1
   selector:
