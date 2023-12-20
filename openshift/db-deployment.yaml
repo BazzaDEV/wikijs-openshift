@@ -30,11 +30,13 @@ spec:
         ports:
         - containerPort: 5432
           protocol: TCP
-        env:
-        - name: POSTGRESQL_USER
-          value: wikijs
-        - name: POSTGRESQL_PASSWORD
-          value: wikijsrocks
-        - name: POSTGRESQL_DATABASE
-          value: wiki
-
+        envFrom:
+          - secretRef:
+              name: wikijs-db
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+              drop: ["ALL"]
+          runAsNonRoot: true
+          seccompProfile: 
+            type: RuntimeDefault

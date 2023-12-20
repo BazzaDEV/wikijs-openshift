@@ -24,15 +24,28 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: DB_TYPE
-              value: postgres
-            - name: DB_HOST
-              value: wikijs-db
-            - name: DB_PORT
-              value: '5432'
-            - name: DB_USER
-              value: wikijs
-            - name: DB_PASS
-              value: wikijsrocks
             - name: DB_NAME
-              value: wiki
+              valueFrom:
+                secretKeyRef:
+                  name: wikijs-db
+                  key: POSTGRESQL_DATABASE
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: wikijs-db
+                  key: POSTGRESQL_USER
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: wikijs-db
+                  key: POSTGRESQL_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: wikijs-app
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+                drop: ["ALL"]
+            runAsNonRoot: true
+            seccompProfile: 
+              type: RuntimeDefault
